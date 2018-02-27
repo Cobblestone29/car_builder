@@ -104,8 +104,16 @@ def basePrice():
         else:
             print(car_choice, "selected.")
             name = input("What would you like to name this car? ")
-            createCar(car_choice, name, [], [])
-            pickMods(car_choice, name, [], [])
+            while name: 
+                try:
+                    temp_variable = open(name, "r")
+                except FileNotFoundError:
+                    createCar(car_choice, name, [], [])
+                    pickMods(car_choice, name, [], [])
+                    break
+                else:
+                    print("There's already a car with this name! ")
+                    name = input("What would you like to name this car? ")
 
 def pickMods(car_model, car_name, perf_mods, vis_mods):
     p_mods = []
