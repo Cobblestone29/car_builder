@@ -4,15 +4,25 @@
 
 ''' helps calculate how much your dream car will cost you '''
 
+from PIL import Image
+
 car = "sports car"
 
-cars_ingame = ["sample"]
+cars_ingame = ["350z", "180sx", "evo", "r34"]
 
 def createCar(car_model, car_name, p_mods, v_mods):
 
     newLine = lambda : car_file.write("\n")
+
+    '''model_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_model + ".png"
+    name_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_name + ".png"
+
+    car_image_file = Image.open(model_image)
+    #car_image_file.show()
+    car_image_file.save(name_image)'''
     
     car_file = open(car_name, "w")
+    
     model_string = "CAR MODEL = " + car_model + "\n"
     name_string = "CAR NAME = " + car_name + "\n"
     for i in range(30):
@@ -57,6 +67,14 @@ def createCar(car_model, car_name, p_mods, v_mods):
     for i in range(30):
         car_file.write("#")
     newLine()
+
+def createPic(car_model, car_name):
+    model_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_model + ".png"
+    name_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_name + ".png"
+
+    car_image_file = Image.open(model_image)
+    car_image_file.show()
+    car_image_file.save(name_image)
 
 def basePrice():
     new_or_current = input("Do you want to modify an [e]xisting car or build a [N]ew one? ")
@@ -109,6 +127,7 @@ def basePrice():
                     temp_variable = open(name, "r")
                 except FileNotFoundError:
                     createCar(car_choice, name, [], [])
+                    createPic(car_choice, name)
                     pickMods(car_choice, name, [], [])
                     break
                 else:
