@@ -167,5 +167,3 @@ def pickMods(car_model, car_name, perf_mods, vis_mods):
     else:
         createCar(car_model, car_name, p_mods, v_mods)
         print("Car file saved.")
-
-basePrice()
