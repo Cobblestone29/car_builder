@@ -80,7 +80,7 @@ def getCar():
     car_model = input("What model car do you want to work on? ")
     car_name = input("What's the name of the car you want to work on? ")
 
-    colors = ["red", "yellow", "blue"]
+    colors = ["red", "yellow", "blue", "green", "purple", "black", "white"]
 
     #car_file = open(car_name, "r")
 
@@ -152,6 +152,14 @@ def paintCar(car_name, color):
                     pixeldata[x, y] = (0, 0, 255)
                 elif color == "yellow":
                     pixeldata[x, y] = (255, 255, 0)
+                elif color == "green":
+                    pixeldata[x, y] = (0, 255, 0)
+                elif color == "purple":
+                    pixeldata[x, y] = (255, 0, 255)
+                elif color == "black":
+                    pixeldata[x, y] = (0, 0, 0)
+                elif color == "white":
+                    pixeldata[x, y] = (255, 255, 255)
             elif g == 100:
                 if color == "red":
                     pixeldata[x, y] = (100, 0, 0)
@@ -159,15 +167,16 @@ def paintCar(car_name, color):
                     pixeldata[x, y] = (0, 0, 100)
                 elif color == "yellow":
                     pixeldata[x, y] = (100, 100, 0)
+                elif color == "green":
+                    pixeldata[x, y] = (0, 100, 0)
+                elif color == "purple":
+                    pixeldata[x, y] = (100, 0, 100)
+                elif color == "black" or color == "white":
+                    pixeldata[x, y] = (100, 100, 100)
 
     file_path = "/home/zsteck/Desktop/car_builder/finished_cars/"
 
-    if color == "red":
-        car_new_name = file_path + "red_" + car_file_name
-    elif color == "blue":
-        car_new_name = file_path + "blue_" + car_file_name
-    elif color == "yellow":
-        car_new_name = file_path + "yellow_" + car_file_name
+    car_new_name = file_path + color + "_" + car_file_name
         
     #car_image.show()
     car_image.save(car_new_name)
