@@ -80,7 +80,7 @@ def getCar():
     car_model = input("What model car do you want to work on? ")
     car_name = input("What's the name of the car you want to work on? ")
 
-    colors = ["red", "yellow", "blue", "green", "purple", "black", "white"]
+    colors = ["red", "yellow", "blue", "green", "pink", "black", "white", "turquoise", "brown", "orange", "purple", "dark green"]
 
     #car_file = open(car_name, "r")
 
@@ -154,12 +154,22 @@ def paintCar(car_name, color):
                     pixeldata[x, y] = (255, 255, 0)
                 elif color == "green":
                     pixeldata[x, y] = (0, 255, 0)
-                elif color == "purple":
+                elif color == "pink":
                     pixeldata[x, y] = (255, 0, 255)
                 elif color == "black":
                     pixeldata[x, y] = (0, 0, 0)
                 elif color == "white":
                     pixeldata[x, y] = (255, 255, 255)
+                elif color == "turquoise":
+                    pixeldata[x, y] = (0, 255, 229)
+                elif color == "brown":
+                    pixeldata[x, y] = (127, 70, 0)
+                elif color == "orange":
+                    pixeldata[x, y] = (255, 140, 0)
+                elif color == "purple":
+                    pixeldata[x, y] = (152, 0 , 255)
+                elif color == "dark green":
+                    pixeldata[x, y] = (0, 51, 33)
             elif g == 100:
                 if color == "red":
                     pixeldata[x, y] = (100, 0, 0)
@@ -169,10 +179,20 @@ def paintCar(car_name, color):
                     pixeldata[x, y] = (100, 100, 0)
                 elif color == "green":
                     pixeldata[x, y] = (0, 100, 0)
-                elif color == "purple":
+                elif color == "pink":
                     pixeldata[x, y] = (100, 0, 100)
                 elif color == "black" or color == "white":
                     pixeldata[x, y] = (100, 100, 100)
+                elif color == "turquoise":
+                    pixeldata[x, y] = (0, 96, 87)
+                elif color == "brown":
+                    pixeldata[x, y] = (71, 39, 0)
+                elif color == "orange":
+                    pixeldata[x, y] = (130, 71, 0)
+                elif color == "purple":
+                    pixeldata[x, y] = (84, 0, 140)
+                elif color == "dark green":
+                    pixeldata[x, y] = (0, 99, 0)
 
     file_path = "/home/zsteck/Desktop/car_builder/finished_cars/"
 

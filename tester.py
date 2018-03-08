@@ -1,42 +1,20 @@
-from tkinter import *
+import tkSimpleDialog
 
-class Application(Frame):
-    def say_hi(self):
-        print("hi there, everyone!")
+class MyDialog(tkSimpleDialog.Dialog):
 
-    def createWidgets(self):
-        self.QUIT = Button(self)
-        self.QUIT["text"] = """QUIT.................................
-        ...............................................................
-        .
+    def body(self, master):
 
+        Label(master, text="First:").grid(row=0)
+        Label(master, text="Second:").grid(row=1)
 
+        self.e1 = Entry(master)
+        self.e2 = Entry(master)
 
+        self.e1.grid(row=0, column=1)
+        self.e2.grid(row=1, column=1)
+        return self.e1 # initial focus
 
-
-
-
-
-
-
-        ."""
-        self.QUIT["fg"]   = "red"
-        self.QUIT["command"] =  self.quit
-
-        self.QUIT.pack({"side": "left"})
-
-        self.hi_there = Button(self)
-        self.hi_there["text"] = "Hello",
-        self.hi_there["command"] = self.say_hi
-
-        self.hi_there.pack({"side": "left"})
-
-    def __init__(self, master=None):
-        Frame.__init__(self, master)
-        self.pack()
-        self.createWidgets()
-
-root = Tk()
-app = Application(master=root)
-app.mainloop()
-root.destroy()
+    def apply(self):
+        first = int(self.e1.get())
+        second = int(self.e2.get())
+        print(first, second) # or something
