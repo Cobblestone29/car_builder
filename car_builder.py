@@ -45,9 +45,16 @@ def createCar(car_model, car_name, p_mods, v_mods):
             #print("re", temp_mod_string in v_mods)
             
             if temp_mod_string in v_mods:
-                v_mods = v_mods.remove(temp_mod_string
-                                       )
-                print("REmoved", v_mods)
+                v_mods = v_mods.remove(temp_mod_string)
+                #print("REmoved", v_mods)
+        if "PERFORMANCE MOD = " in line:
+            #print("#", p_mods)
+            temp_mod_string = line[18:].strip()
+            #print("##", temp_mod_string)
+            if temp_mod_string in p_mods:
+                p_mods.remove(temp_mod_string)
+                #print("###", p_mods)
+            #print("####", p_mods)
 
     try:
         for item in v_mods:
@@ -162,7 +169,7 @@ def pickMods(car_model, car_name, perf_mods, vis_mods):
             #print(p_mods)
             pickMods(car_model, car_name, p_mods, v_mods)
         else:
-            print("Sorry! That mod isn't in the game yet. ")
+            print("Sorry! That mod isn't in the game yet or it has already been applied to the car. ")
             pickMods(car_model, car_name, p_mods, v_mods)
 
             
