@@ -33,26 +33,38 @@ def createCar(car_model, car_name, p_mods, v_mods):
     else:
         car_file = open(car_name, "r")
 
+    for line in car_file:
+        if "VISUAL MOD = " in line:
+            #print("RE", line)
+            #print("RE   E", v_mods)
+            #print("RE   E   E", line[12:])
+            temp_mod_string = line[13:].strip()
+            #temp_mod_string.replace('VISUAL_MOD', '').strip()
+            #print("RE   E   E   E", temp_mod_string)
 
-    newLine()
-    for item in v_mods:
-        for line in car_file:
-            if item in line:
-                yeet = 1
-            else:
-                car_file = open(car_name, "a")
-                car_file.write("VISUAL MOD = ")
-                car_file.write(item)
-                newLine()
-    for item in p_mods:
-        for line in car_file:
-            if item in line:
-                yeet = 1
-            else:
-                car_file = open(car_name, "a")
-                car_file.write("PERFORMANCE MOD = ")
-                car_file.write(item)
-                newLine()
+            #print("re", temp_mod_string in v_mods)
+            
+            if temp_mod_string in v_mods:
+                v_mods = v_mods.remove(temp_mod_string
+                                       )
+                print("REmoved", v_mods)
+
+    try:
+        for item in v_mods:
+            car_file = open(car_name, "a")
+            car_file.write("VISUAL MOD = ")
+            car_file.write(item)
+            newLine()
+    except TypeError:
+        print("", end="")
+    try:
+        for item in p_mods:
+            car_file = open(car_name, "a")
+            car_file.write("PERFORMANCE MOD = ")
+            car_file.write(item)
+            newLine()
+    except TypeError:
+        print("", end="")
 
 def createPic(car_model, car_name):
     model_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_model + ".png"
@@ -135,7 +147,9 @@ def pickMods(car_model, car_name, perf_mods, vis_mods):
     print(v_mods)
         
     mod_half = input("Do you want to mod visuals or performance? ")
+    
     if mod_half.lower() == "p":
+        #print("mod performance here")
         category_p = input("Which part of the car's performance would you like to modify? ")
         if category_p == "brakes" and "Brembo brakes" not in p_mods:
             print("Brakes have been upgraded!")
@@ -150,12 +164,17 @@ def pickMods(car_model, car_name, perf_mods, vis_mods):
         else:
             print("Sorry! That mod isn't in the game yet. ")
             pickMods(car_model, car_name, p_mods, v_mods)
+
+            
     elif mod_half.lower() == "v":
         #print("mod visuals here")
         category_v = input("Which part of the car's visuals would you like to modify? ")
-        if category_v == "bodykit" and "Rocketbunny Kit" not in v_mods:
-            print("Rocketbunny kit applied!")
-            v_mods.append("Rocketbunny Kit")
+        if category_v == "bodykit":
+            if "Rocketbunny Kit" not in v_mods:
+                print("Rocketbunny kit applied!")
+                v_mods.append("Rocketbunny Kit")
+            else:
+                print("Car already has a body kit. Try another mod? ")
             pickMods(car_model, car_name, p_mods, v_mods)
     else:
         createCar(car_model, car_name, p_mods, v_mods)

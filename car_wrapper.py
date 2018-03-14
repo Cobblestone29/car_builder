@@ -103,6 +103,7 @@ def getCar():
         for i in range(5):
             time.sleep(0.5)
             print(".", end="")
+        
         print("")
         print("Done! ")
 
