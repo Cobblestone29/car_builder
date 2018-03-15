@@ -85,7 +85,7 @@ def createCar(car_model, car_name, p_mods, v_mods):
         print("", end="")
 
 def createPic(car_model, car_name):
-    model_image = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_model + ".png"
+    model_image = "/home/zsteck/Desktop/car_builder/car_builder/stock_files/" + car_model + ".png"
     name_image = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name + ".png"
 
     car_image_file = Image.open(model_image)

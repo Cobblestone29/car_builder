@@ -14,8 +14,8 @@ def start():
     getCar()
 
 def stockPicGenerator(car_name, car_model):
-    car_file_name = car_name + ".png"
-    car_file_model = car_model + ".png"
+    car_file_name = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name + ".png"
+    car_file_model = "/home/zsteck/Desktop/car_builder/car_builder/stock_pictures/" + car_model + ".png"
 
     try:
         car_image = Image.open(car_file_name)
@@ -80,6 +80,8 @@ def getCar():
     car_model = input("What model car do you want to work on? ")
     car_name = input("What's the name of the car you want to work on? ")
 
+    car_name_path = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name + ".png"
+
     colors = ["red", "yellow", "blue", "green", "pink", "black", "white", "turquoise", "brown", "orange", "purple", "dark green"]
 
     #car_file = open(car_name, "r")
@@ -136,7 +138,7 @@ def getCar():
         
     
 def paintCar(car_name, color):
-    car_file_name = car_name + ".png"
+    car_file_name = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name + ".png"
 
     car_image = Image.open(car_file_name)
     rgb_car_image = car_image.convert("RGB")
@@ -195,9 +197,9 @@ def paintCar(car_name, color):
                 elif color == "dark green":
                     pixeldata[x, y] = (0, 99, 0)
 
-    file_path = "/home/zsteck/Desktop/car_builder/finished_cars/"
+    file_path = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/"
 
-    car_new_name = file_path + color + "_" + car_file_name
+    car_new_name = file_path + car_name + ".png"
         
     #car_image.show()
     car_image.save(car_new_name)
