@@ -5,6 +5,7 @@
 ''' helps calculate how much your dream car will cost you '''
 
 from PIL import Image
+import os
 
 car = "sports car"
 
@@ -20,18 +21,28 @@ def createCar(car_model, car_name, p_mods, v_mods):
     car_image_file = Image.open(model_image)
     #car_image_file.show()
     car_image_file.save(name_image)'''
+
+    car_folder = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/"
+    
+    if not os.path.exists(car_folder):
+        os.makedirs(car_folder)
+
+    car_file_path = car_folder + car_name
+    
     try:
-        car_file_test = open(car_name, "r")
+        car_file_test = open(car_file_path , "r")
     except FileNotFoundError:
-        car_file = open(car_name, "w")
+        car_file = open(car_file_path, "w")
 
         model_string = "CAR MODEL = " + car_model + "\n"
         name_string = "CAR NAME = " + car_name + "\n"
        
         car_file.write(model_string)
         car_file.write(name_string)
+        car_file.close()
+        car_file = open(car_file_path, "r")
     else:
-        car_file = open(car_name, "r")
+        car_file = open(car_file_path, "r")
 
     for line in car_file:
         if "VISUAL MOD = " in line:
@@ -58,7 +69,7 @@ def createCar(car_model, car_name, p_mods, v_mods):
 
     try:
         for item in v_mods:
-            car_file = open(car_name, "a")
+            car_file = open(car_file_path, "a")
             car_file.write("VISUAL MOD = ")
             car_file.write(item)
             newLine()
@@ -66,7 +77,7 @@ def createCar(car_model, car_name, p_mods, v_mods):
         print("", end="")
     try:
         for item in p_mods:
-            car_file = open(car_name, "a")
+            car_file = open(car_file_path, "a")
             car_file.write("PERFORMANCE MOD = ")
             car_file.write(item)
             newLine()
@@ -74,8 +85,8 @@ def createCar(car_model, car_name, p_mods, v_mods):
         print("", end="")
 
 def createPic(car_model, car_name):
-    model_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_model + ".png"
-    name_image = "/home/zsteck/Desktop/car_builder/car_wrapper/" + car_name + ".png"
+    model_image = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_model + ".png"
+    name_image = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name + ".png"
 
     car_image_file = Image.open(model_image)
     #car_image_file.show()
@@ -89,8 +100,10 @@ def basePrice():
     
     if new_or_current.lower() == "e":
         car_name = input("What's the name of the car? ")
+        car_path = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + car_name.lower() + "/" + car_name
+        
         try:
-            car_name_file = open(car_name, "r")
+            car_name_file = open(car_path, "r")
         except FileNotFoundError:
             print("Sorry, this car doesn't exist yet. You can try again later or just create a new car. ")
             basePrice()
@@ -129,10 +142,11 @@ def basePrice():
         else:
             print(car_choice, "selected.")
             name = input("What would you like to name this car? ")
-            while name: 
+            while name:
+                car_folder = "/home/zsteck/Desktop/car_builder/car_builder/user_files/" + name.lower() + "/" + name
                 try:
-                    temp_variable = open(name, "r")
-                except FileNotFoundError:
+                    temp_variable = open(car_folder, "r")
+                except FileNotFoundError or NotADirectoryError or IsADirectoryError:
                     createCar(car_choice, name, [], [])
                     createPic(car_choice, name)
                     pickMods(car_choice, name, [], [])
