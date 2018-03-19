@@ -9,7 +9,11 @@ import os
 
 car = "sports car"
 
-cars_ingame = ["350z", "180sx", "evo", "r34"]
+temp_list = []
+
+cars_ingame = ["124_spider", "180sx", "350z", "370z", "620", "911", "ae86", "camaro", "challenger", "charger", "ds3", "evo", "g35",
+               "genesis", "gt86", "ke30", "mustang", "mustangfastback1968", "nsx", "nsx2017", "quattro", "r32", "r34", "r35", "r35nismo",
+               "rx7fc", "rx8", "s30", "s2000", "shelby_GT500", "supra", "wrxsti"]
 
 def createCar(car_model, car_name, p_mods, v_mods):
 
